@@ -9,25 +9,26 @@ class JsonChecker:
             self.RolePolicyKeys = {"PolicyName": True, "PolicyDocument": True}
             # KeyName:[Checkers, Values]
             self.RolePolicyKeysChecks = {
-                "PolicyName": [[self.type_check,str],[self.regex_check,"[\w+=,.@-]+"]],
-                "PolicyDocument": [[self.type_check,dict]]
+                "PolicyName": [[type_check,str],[regex_check,"[\w+=,.@-]+"]],
+                "PolicyDocument": [[type_check,dict]]
             }
             # KeyName:IsRequired
             self.PolicyDocumentKeys = {"Version": True, "Statement": True}
             # KeyName:[Checkers, Values]
             self.PolicyDocumentKeysChecks = {
-                "Version": [[self.type_check, str], [self.value_in_check, ["2012-10-17", "2008-10-17"]]],
-                "Statement": [[self.type_check, list]]
+                "Version": [[type_check, str], [value_in_check, ["2012-10-17", "2008-10-17"]]],
+                "Statement": [[type_check, list]]
             }
             # KeyName:IsRequired
-            self.StatementKeys = {"Sid": False, "Effect": True, "Action": True, "Resource": False, "Condition": False}
+            self.StatementKeys = {"Sid": False, "Effect": True, "Principal":False, "Action": True, "Resource": False, "Condition": False}
             # KeyName:[Checkers, Values]
             self.StatementKeysChecks = {
-                "Sid": [[self.type_check, str]],
-                "Effect": [[self.type_check, str], [self.value_in_check, ["Allow", "Deny"]]],
-                "Action": [[self.type_check, list]],
-                "Resource": [[self.type_check, list]],
-                "Condition": [[self.type_check, dict]],
+                "Sid": [[type_check, str]],
+                "Effect": [[type_check, str], [value_in_check, ["Allow", "Deny"]]],
+                "Principal": [[type_check, dict]],
+                "Action": [[type_check, list]],
+                "Resource": [[check_resources,None]],
+                "Condition": [[type_check, dict]],
             }
 
             self.json_dict = json.loads(file.read())
@@ -66,7 +67,7 @@ class JsonChecker:
 
         # Role Policy -> Policy Document -> Statement
         for s in policy["Statement"]:
-            if not self.type_check(dict,s): return False
+            if not type_check(dict,s): return False
             # Checking amount of keys
             if len(s.keys()) > len(self.StatementKeys.keys()): return False
             for key in self.StatementKeys.keys():
@@ -81,14 +82,18 @@ class JsonChecker:
         return True
 
 
-    def type_check(self,t,check) -> bool:
-        if t == type(check): return True
-        return False
+def type_check(t,check) -> bool:
+    if t == type(check): return True
+    return False
 
-    def regex_check(self,pattern:str, text:str) -> bool:
-        if re.fullmatch(pattern,text) is None: return False
-        return True
+def regex_check(pattern:str, text:str) -> bool:
+    if re.fullmatch(pattern,text) is None: return False
+    return True
 
-    def value_in_check(self,pattern:list, value) -> bool:
-        if value in pattern: return True
-        return False
+def value_in_check(pattern:list, value) -> bool:
+    if value in pattern: return True
+    return False
+
+def check_resources(placeholder,obj) -> bool:
+    if type(obj) in [str,list]: return True
+    return False
