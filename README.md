@@ -18,7 +18,7 @@ import JsonChecker
 ```
 
 ## Wykonanie
-Zrobiłem projekt w IntelliJ PyCharm, kod pisałem w Python 3.10.11.
+Zrobiłem projekt w PyCharm 2023.2, kod pisałem w Python 3.10.11.
 
 Sprawdzanie pliku wykonuje obiekt klasy JsonChecker, który w konstruktorze przyjmuje ścieżkę do pliku.
 Aby zwrócić czy plik jest w formacie AWS::IAM::Role

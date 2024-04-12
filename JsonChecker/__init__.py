@@ -33,6 +33,12 @@ class JsonChecker:
 
             self.json_dict = json.loads(file.read())
 
+    def get_required_statement_keys(self) -> list[str]:
+        result = list()
+        for key in self.StatementKeys.keys():
+            if self.StatementKeys[key]: result.append(key)
+        return result
+
     def check(self) -> bool:
         # Checking Role Policy
         # Checking amount of keys
@@ -69,7 +75,8 @@ class JsonChecker:
         for s in policy["Statement"]:
             if not type_check(dict,s): return False
             # Checking amount of keys
-            if len(s.keys()) > len(self.StatementKeys.keys()): return False
+            if len(s.keys()) < len(self.get_required_statement_keys()) or len(s.keys()) > len(self.StatementKeys.keys()):
+                return False
             for key in self.StatementKeys.keys():
                 # Checking key name and if key is required
                 if key not in s.keys():
