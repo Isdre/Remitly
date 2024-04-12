@@ -4,6 +4,7 @@ import re
 
 class JsonChecker:
     def __init__(self,file_name:str):
+        if file_name[-5:] != ".json": raise TypeError(f"{file_name} is not a JSON file")
         with open(file_name) as file:
             # KeyName:IsRequired
             self.RolePolicyKeys = {"PolicyName": True, "PolicyDocument": True}
