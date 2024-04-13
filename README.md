@@ -1,45 +1,44 @@
-# Zadanie rekrutacyjne Remitly
-wykonane przez Gilbert Guszcza
+# Remitly Recruitment Task
+made by Gilbert Guszcza
 
-## Opis zadania
+## Task description
 
-[Pełna treść zadania](Home%20Exercise%202024.docx.pdf)
+[Full task content](Home%20Exercise%202024.docx.pdf)
 
-## Uruchomianie
-Można skorzystać z komendy
+## How to run
+You can use the command
 ```
 python check_json.py [file]
 ```
-gdzie w pole [file] należy wstawić ścieżkę do pliku.
+where the path to the file should be entered in the [file] field.
 
-Można również zaimportować moduł JsonChecker
+You can also import the JsonChecker module
 ```python
 import JsonChecker
 ```
 
-## Wykonanie
-Zrobiłem projekt w PyCharm 2023.2, kod pisałem w Python 3.10.11.
+## Execution
+I created the project in PyCharm 2023.2, I wrote the code in Python 3.10.11.
 
-Sprawdzanie pliku wykonuje obiekt klasy JsonChecker, który w konstruktorze przyjmuje ścieżkę do pliku JSON w formacie AWS::IAM::Role Policy.
-Aby zwrócić czy plik jest poprawny, nalezy wywołać funkcje check().
+File checking is performed by an object of the JsonChecker class, which in its constructor takes the path to a JSON file in the AWS::IAM::Role Policy format.
+To return whether the file is valid, call the check() function.
 
 ```python
-import re
-import json
+import d
+json import
 
 
-class JsonChecker:
-    def __init__(self,file_name:str):
-    #
+classJsonChecker:
+     def __init__(self,file_name:str):
+     #
     
-    def check(self) -> bool:
-    #
+     def check(self) -> bool:
+     #
 ```
 
 
 [JsonChecker.py](JsonChecker/__init__.py)
 
-### Testy
-Testy jednostowe klasy JsonChecker
-
-[]()
+### Tests
+Unit tests of the JsonChecker class and check method
+[test_check.py](tests/test_check.py)
