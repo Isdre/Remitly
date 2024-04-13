@@ -24,8 +24,7 @@ File checking is performed by an object of the JsonChecker class, which in its c
 To return whether the file is valid, call the check() function.
 
 ```python
-import d
-json import
+import json
 
 
 class JsonChecker:
