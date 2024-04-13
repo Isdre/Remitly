@@ -41,4 +41,5 @@ classJsonChecker:
 
 ### Tests
 Unit tests of the JsonChecker class and check method
+
 [test_check.py](tests/test_check.py)
