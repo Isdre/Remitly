@@ -21,6 +21,18 @@ def test_check_1():
     obj = JsonChecker("tests\\test_1.json")
     assert obj.check()
 
-# def test_check_2():
-#     obj = JsonChecker("tests\\test_2.json")
-#     assert obj.check()
+def test_check_2():
+    obj = JsonChecker("tests\\test_2.json")
+    assert obj.check()
+
+def test_check_3():
+    obj = JsonChecker("tests\\test_3.json")
+    assert obj.check()
+
+def test_check_4():
+    obj = JsonChecker("tests\\test_4.json")
+    assert obj.check()
+
+def test_check_5():
+    obj = JsonChecker("tests\\test_5.json")
+    assert obj.check() == False

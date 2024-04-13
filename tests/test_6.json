@@ -1,0 +1,16 @@
+{
+    "PolicyName": "root",
+    "PolicyDocument": {
+        "Version": "2012-12-17",
+        "Statement": [
+            {
+                "Sid": "IamListAccess",
+                "Effect": "Deny",
+                "Action": [
+                    "iam:ListRoles",
+                    "iam:ListUsers"
+                ]
+            }
+        ]
+    }
+}

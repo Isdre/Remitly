@@ -10,7 +10,7 @@ class JsonChecker:
             self.RolePolicyKeys = {"PolicyName": True, "PolicyDocument": True}
             # KeyName:[Checkers, Values]
             self.RolePolicyKeysChecks = {
-                "PolicyName": [[type_check,str],[regex_check,"[\w+=,.@-]+"]],
+                "PolicyName": [[type_check,str],[regex_check,"[\\w+=,.@-]+"]],
                 "PolicyDocument": [[type_check,dict]]
             }
             # KeyName:IsRequired
@@ -27,8 +27,8 @@ class JsonChecker:
                 "Sid": [[type_check, str]],
                 "Effect": [[type_check, str], [value_in_check, ["Allow", "Deny"]]],
                 "Principal": [[type_check, dict]],
-                "Action": [[type_check, list]],
-                "Resource": [[check_resources,None]],
+                "Action": [[check_str_or_lists, list]],
+                "Resource": [[check_str_or_lists,None]],
                 "Condition": [[type_check, dict]],
             }
 
@@ -102,6 +102,6 @@ def value_in_check(pattern:list, value) -> bool:
     if value in pattern: return True
     return False
 
-def check_resources(placeholder,obj) -> bool:
+def check_str_or_lists(placeholder,obj) -> bool:
     if type(obj) in [str,list]: return True
     return False
