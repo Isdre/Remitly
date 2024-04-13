@@ -28,7 +28,7 @@ import d
 json import
 
 
-classJsonChecker:
+class JsonChecker:
      def __init__(self,file_name:str):
      #
     
@@ -37,7 +37,7 @@ classJsonChecker:
 ```
 
 
-[JsonChecker.py](JsonChecker/__init__.py)
+[__init__.py](JsonChecker/__init__.py)
 
 ### Tests
 Unit tests of the JsonChecker class and check method
