@@ -36,7 +36,7 @@ class JsonChecker:
 ```
 
 
-[__init__.py](JsonChecker/__init__.py)
+[\_\_init\_\_.py](JsonChecker/__init__.py)
 
 ### Tests
 Unit tests of the JsonChecker class and check method
