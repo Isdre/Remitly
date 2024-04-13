@@ -1,5 +1,5 @@
 # Remitly Recruitment Task
-made by Gilbert Guszcza
+by Gilbert Guszcza
 
 ## Task description
 
